@@ -1,9 +1,9 @@
 # Virtual-Joystick-Unity
 A simple and complete virtual joystick for touchscreens, for both 2D and 3D games, with useful options.
 
-<img src="https://raw.githubusercontent.com/MarcoFazioRandom/Virtual-Joystick-Unity/master/preview_1.png" width="300">
+<img src="https://raw.githubusercontent.com/MarcoFazioRandom/Virtual-Joystick-Unity/master/preview_1.png?token=AMG4MS3WH3Y73PPEWJ4BB6C5B5QIO" width="400">
 
-<img src="https://raw.githubusercontent.com/MarcoFazioRandom/Virtual-Joystick-Unity/master/preview_2.png" width="300">
+<img src="https://raw.githubusercontent.com/MarcoFazioRandom/Virtual-Joystick-Unity/master/preview_2.png?token=AMG4MS3WH3Y73PPEWJ4BB6C5B5QIO" width="300">
 
 ### OPTIONS:  
 
