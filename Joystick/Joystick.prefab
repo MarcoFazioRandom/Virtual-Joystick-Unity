@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystickMode: 0
   vectorMode: 0
+  pressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.7}
   deadZone: 0.2
   clampZone: 1
   directions: 0

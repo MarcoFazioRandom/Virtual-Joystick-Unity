@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
@@ -7,6 +8,8 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 	RectTransform background;
 	RectTransform handle;
 	Vector2 originalPosition;
+	Image handleImage;
+	Color originalColor;
 
 	public enum JoystickModeEnum { Fixed, Dynamic, Following };
 	[Tooltip("Fixed: It doesn't move. " +
@@ -18,6 +21,9 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 	[Tooltip("Real: the output is a vector with magnitude beetween 0 and 1." +
 		"\nNormal: the output is normalized.")]
 	public VectorModeEnum vectorMode = VectorModeEnum.Real;
+
+	[Tooltip("Color of the Handle when it's pressed.")]
+	public Color pressedColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
 
 	[Tooltip("If the handle is inside this range, in proportion to the background size, the output is zero.")]
 	[Range(0f, 0.5f)]
@@ -46,6 +52,7 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 		Transform backgroundTransform = transform.GetChild(0);
 		background = backgroundTransform.GetComponent<RectTransform>();
 		handle = backgroundTransform.GetChild(0).GetComponent<RectTransform>();
+		handleImage = handle.GetComponent<Image>();
 	}
 
 	private void Start()
@@ -55,6 +62,7 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 		background.anchoredPosition = Vector2.zero;
 		handle.anchoredPosition = Vector2.zero;
 		originalPosition = background.anchoredPosition;
+		originalColor = handleImage.color;
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
@@ -69,6 +77,7 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 	public void OnBackgroundPointerDown(BaseEventData baseEventData)
 	{
 		OnPointerDown(baseEventData as PointerEventData);
+		handleImage.color = pressedColor;
 	}
 
 	public void OnBackgroundDrag(BaseEventData baseEventData)
@@ -119,6 +128,7 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 		handle.anchoredPosition = Vector2.zero;
 		if (joystickMode != JoystickModeEnum.Fixed)
 			background.anchoredPosition = originalPosition;
+		handleImage.color = originalColor;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
