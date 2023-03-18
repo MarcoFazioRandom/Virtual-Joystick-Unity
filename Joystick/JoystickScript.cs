@@ -11,37 +11,37 @@ public class JoystickScript : MonoBehaviour, IDragHandler, IPointerUpHandler, IP
 	Image handleImage;
 	Color originalColor;
 
-	public enum JoystickModeEnum { Fixed, Dynamic, Following };
+	enum JoystickModeEnum { Fixed, Dynamic, Following };
 	[Tooltip("Fixed: It doesn't move. " +
 		"\nDynamic: Every time the joystick area is pressed, the joystick position is set on the touched position. " +
 		"\nFollowing: If the finger moves outside the joystick background, the joystick follows it.")]
-	public JoystickModeEnum joystickMode = JoystickModeEnum.Fixed;
+	JoystickModeEnum joystickMode = JoystickModeEnum.Fixed;
 
-	public enum VectorModeEnum { Real, Normal };
+	enum VectorModeEnum { Real, Normal };
 	[Tooltip("Real: the output is a vector with magnitude beetween 0 and 1." +
 		"\nNormal: the output is normalized.")]
-	public VectorModeEnum vectorMode = VectorModeEnum.Real;
+	[SerializeField] VectorModeEnum vectorMode = VectorModeEnum.Real;
 
 	[Tooltip("Color of the Handle when it's pressed.")]
-	public Color pressedColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+	[SerializeField] Color pressedColor = new Color(0.5f, 0.5f, 0.5f, 0.7f);
 
 	[Tooltip("If the handle is inside this range, in proportion to the background size, the output is zero.")]
 	[Range(0f, 0.5f)]
-	public float deadZone = 0.2f;
+	[SerializeField] float deadZone = 0.2f;
 
 	[Tooltip("The max distance of the handle, in proportion to the background size.")]
 	[Range(0.5f, 2f)]
-	public float clampZone = 1f;
+	[SerializeField] float clampZone = 1f;
 
 	[Header("directional joystick")]
 
 	[Tooltip("Number of directions of the joystick. \nKeep at 0 for a free joystick.")]
 	[Range(0, 12)]
-	public int directions = 0;
+	[SerializeField] int directions = 0;
 
 	[Tooltip("Angle, in degrees, of the simmetry of the directions.")]
 	[Range(-180f, 180f)]
-	public float simmetryAngle = 90f;
+	[SerializeField] float simmetryAngle = 90f;
 
 	public bool IsWorking { get; private set; } = false;
 	public Vector2 Output { get; private set; } = Vector2.zero;
